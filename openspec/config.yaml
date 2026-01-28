@@ -1,0 +1,138 @@
+schema: spec-driven
+
+# Project context
+context: |
+  ## Projet: Site Web Aménagement Extérieur (63)
+
+  ### Vue d'ensemble
+  Site web pour entreprise familiale de 45 ans d'expérience en aménagement extérieur (portails, terrasses, clôtures).
+  Zone géographique: Puy-de-Dôme (63). Objectif: transformer portfolio de réalisations en outil de conversion client.
+
+  ### Tech Stack
+  - Framework: Next.js 15 (App Router)
+  - Runtime: React 19
+  - Language: TypeScript 5
+  - Styling: Tailwind CSS 3 + shadcn/ui
+  - Icons: lucide-react
+  - CMS: Payload CMS (self-hosted)
+  - Database: MongoDB Atlas (gratuit, pour Payload uniquement)
+  - Email: Resend (formulaires + uploads attachés)
+  - Forms: React Hook Form + Zod validation
+  - Upload: react-dropzone
+  - Deployment: Vercel
+  - Storage: Vercel Blob (pour photos CMS)
+
+  ### Architecture Key Points
+  - SSR/SSG pour SEO local optimisé
+  - Payload CMS pour gestion portfolio par client (interface admin)
+  - Pas de stockage leads en DB: tout par email avec Resend
+  - Images optimisées via next/image (WebP/AVIF)
+  - API Routes pour formulaires et uploads
+
+  ### Design System
+  Palette "Artisan Moderne":
+  - Primary: Vert Forêt Auvergne (#22c55e / #15803d)
+  - Accent: Ambre Bois (#d97706)
+  - Neutral: Gris Anthracite (#404040 / #171717)
+
+  Typography:
+  - Headings: Montserrat (SemiBold/Bold)
+  - Body: Inter (Regular 16px)
+  - CTA: Inter SemiBold 18px
+
+  Composants UI: shadcn/ui (Button, Form, Input, Card, Badge)
+
+  ### Structure du Projet
+  ```
+  app/
+    (marketing)/          # Routes publiques
+      page.tsx            # Accueil
+      realisations/       # Galerie 50 photos
+      savoir-faire/       # Process entreprise
+      contact/            # Formulaire + upload
+      villes/[slug]/      # Pages SEO locales (V1)
+    configurateur/        # V1: Configurateur visuel
+    api/
+      contact/route.ts    # POST formulaire
+      upload/route.ts     # Upload photos client
+      generate-pdf/       # V1: Lookbook PDF
+  components/
+    ui/                   # shadcn/ui components
+    galerie-photos.tsx
+    formulaire-contact.tsx
+    mobile-call-button.tsx
+    carte-interventions.tsx  # V1
+  lib/
+    utils.ts              # Helpers (cn, formatters)
+    validations.ts        # Schémas Zod
+    email.ts              # Service Resend
+  ```
+
+  ### Conventions
+  - TypeScript strict mode
+  - Conventional commits
+  - ESLint + Prettier avec prettier-plugin-tailwindcss
+  - Mobile-first responsive design
+  - Accessibility (ARIA, semantic HTML)
+  - SEO: metadata API Next.js, Schema.org LocalBusiness
+
+  ### Validation Patterns
+  Exemple formulaire contact:
+  ```typescript
+  const contactSchema = z.object({
+    nom: z.string().min(2, "Nom requis"),
+    ville: z.string().regex(/63\d{3}/, "Code postal 63 requis"),
+    typeProjet: z.enum(["Portail", "Terrasse", "Clôture", "Autre"]),
+    budget: z.enum(["< 5k€", "5-10k€", "10-20k€", "> 20k€"]),
+    photos: z.array(z.instanceof(File)).max(3, "3 photos max")
+  });
+  ```
+
+  ### Performance Targets
+  - Lighthouse Mobile: >90 (Performance), >95 (A11y), 100 (SEO)
+  - Core Web Vitals: LCP <2.5s, FID <100ms, CLS <0.1
+  - Images: WebP/AVIF, lazy loading, responsive sizes
+
+  ### Sécurité & RGPD
+  - Upload: validation MIME type + limite 5MB par fichier
+  - Rate limiting sur API Routes (formulaires)
+  - Pas de stockage permanent des données clients (email uniquement)
+  - Cookie banner si Google Analytics (sinon Vercel Analytics gratuit)
+
+  ### Domain Knowledge
+  - Secteur BTP/Aménagement extérieur
+  - Clientèle: Particuliers Puy-de-Dôme
+  - Produits: Portails, Terrasses, Clôtures (aluminium, bois, composite)
+  - USP: Fabricant-Poseur (Direct Usine) + 45 ans d'expérience + Passage TV
+  - Couleurs RAL standards: 7016 (Gris Anthracite), 9005 (Noir), 9006 (Blanc), 6005 (Vert)
+
+  ### MVP Scope (Semaines 1-3)
+  - Pages: Accueil, Réalisations (50 photos max), Savoir-Faire, Contact
+  - Formulaire avec upload 2-3 photos client
+  - Bouton appel mobile persistant
+  - SEO local (Puy-de-Dôme)
+
+  ### V1 Scope (Semaines 4-7)
+  - Configurateur visuel couleurs/modèles
+  - Carte interactive département 63 (Leaflet ou Mapbox)
+  - Génération PDF lookbook (lead magnet)
+  - Pages SEO locales (Clermont-Ferrand, Riom, Issoire, Thiers)
+
+# Per-artifact rules
+rules:
+  proposal:
+    - Toujours considérer le SEO local (Puy-de-Dôme)
+    - Prioriser la simplicité (entreprise familiale, pas de complexité inutile)
+    - Vérifier compatibilité mobile-first
+    - Inclure section "Impact SEO" si applicable
+  tasks:
+    - Découper en tâches de max 4h
+    - Spécifier si MVP ou V1
+    - Inclure critères d'acceptance (tests visuels, Lighthouse scores)
+    - Mentionner dépendances (ex: "Nécessite photos client")
+  implementation:
+    - Utiliser composants shadcn/ui existants
+    - Valider avec Zod pour tous les formulaires
+    - Optimiser images avec next/image
+    - Tester responsive mobile + desktop
+    - Commenter code uniquement si logique complexe
