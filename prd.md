@@ -37,7 +37,7 @@
 - **Carte "Vu chez vos voisins" :** Carte interactive du 63 montrant les zones d'intervention (points de chaleur par commune).
 - **Lookbook PDF (Lead Magnet) :** Bouton de génération d'un catalogue d'inspiration contre email.
 - **Silos SEO Villes :** Création de pages locales (Clermont-Ferrand, Riom, Issoire, Thiers).
-- **Expansion Portfolio :** Déploiement des 2900 photos restantes avec filtres de recherche (Matériaux, Style, Ville).
+- **Expansion Portfolio :** Déploiement des 50 photos restantes avec filtres de recherche qui seront mit plus tard  (Matériaux, Style, Ville).
 
 ---
 

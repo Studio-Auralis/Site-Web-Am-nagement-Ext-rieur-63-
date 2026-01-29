@@ -2,15 +2,38 @@
 .env
 .env.local
 .env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # Dependencies
 node_modules/
 vendor/
 
-# Build outputs
+# Next.js
+.next/
+out/
 dist/
 build/
+
+# Logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Testing
+coverage/
+.nyc_output/
+
+# Vercel
+.vercel
+
+# Playwright
+.playwright-mcp/
+playwright-report/
+test-results/
 
 # IDE
 .vscode/
@@ -22,6 +45,11 @@ build/
 # OS
 .DS_Store
 Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
 
 # Keep Claude Code configuration
 !.claude/

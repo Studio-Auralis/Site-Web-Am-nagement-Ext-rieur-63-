@@ -129,7 +129,7 @@ rules:
     - Découper en tâches de max 4h
     - Spécifier si MVP ou V1
     - Inclure critères d'acceptance (tests visuels, Lighthouse scores)
-    - Mentionner dépendances (ex: "Nécessite photos client")
+    - Mentionner dépendances (ex nécessite photos client)
   implementation:
     - Utiliser composants shadcn/ui existants
     - Valider avec Zod pour tous les formulaires
