@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Configuration pour GitHub Pages
   output: 'export',
-  // basePath retiré temporairement pour debug
+  basePath: '/Site-Web-Am-nagement-Ext-rieur-63-',
   images: {
     unoptimized: true, // Nécessaire pour l'export statique
     remotePatterns: [
