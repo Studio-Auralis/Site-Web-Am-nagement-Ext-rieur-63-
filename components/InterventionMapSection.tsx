@@ -25,7 +25,14 @@ export function InterventionMapSection() {
       if (typeof window === "undefined") return;
 
       const L = (await import("leaflet")).default;
-      await import("leaflet/dist/leaflet.css");
+
+      // Import Leaflet CSS dynamically
+      if (!document.querySelector('link[href*="leaflet.css"]')) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+        document.head.appendChild(link);
+      }
 
       // Fix for default markers
       delete (L.Icon.Default.prototype as any)._getIconUrl;
