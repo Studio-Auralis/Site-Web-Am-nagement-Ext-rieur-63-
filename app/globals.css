@@ -11,6 +11,27 @@
     @apply border-neutral-200;
   }
 
+  /* Smooth transitions for all interactive elements */
+  *,
+  *::before,
+  *::after {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+
+  /* Remove transitions for reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   body {
     @apply bg-gradient-to-br from-terra-50 via-sand-50 to-sage-50 text-neutral-900 font-sans antialiased;
   }
@@ -58,6 +79,36 @@
 /* Smooth scroll */
 html {
   scroll-behavior: smooth;
+  /* Optimize rendering performance */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optimize images and media */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Better text rendering */
+body {
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* Optimize scrolling on mobile */
+* {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hardware acceleration for transforms */
+.transform,
+[class*="transform"],
+[class*="transition"] {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Custom scrollbar (optionnel) */

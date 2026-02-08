@@ -53,3 +53,9 @@ Thumbs.db
 
 # Keep Claude Code configuration
 !.claude/
+.claude/settings.local.json
+
+# Test screenshots
+*.png
+*.jpg
+*.jpeg

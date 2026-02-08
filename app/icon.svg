@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Background circle with green forest color -->
+  <circle cx="32" cy="32" r="30" fill="#16a34a" opacity="0.9"/>
+
+  <!-- House/gate icon representing exterior amenagement -->
+  <g fill="white">
+    <!-- Gate/fence structure -->
+    <rect x="18" y="24" width="4" height="20" rx="1"/>
+    <rect x="42" y="24" width="4" height="20" rx="1"/>
+    <rect x="18" y="28" width="28" height="3" rx="1"/>
+    <rect x="18" y="36" width="28" height="3" rx="1"/>
+
+    <!-- Roof/top element -->
+    <path d="M 32 16 L 48 24 L 16 24 Z" opacity="0.9"/>
+  </g>
+
+  <!-- Small dot accent (terra color) -->
+  <circle cx="32" cy="32" r="3" fill="#d97706"/>
+</svg>

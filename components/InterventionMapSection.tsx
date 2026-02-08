@@ -17,6 +17,7 @@ const interventionZones = [
 
 export function InterventionMapSection() {
   const mapRef = useRef<HTMLDivElement>(null);
+  const mapInstanceRef = useRef<any>(null);
 
   useEffect(() => {
     // Dynamically import Leaflet (client-side only)
@@ -37,6 +38,7 @@ export function InterventionMapSection() {
       if (mapRef.current && !mapRef.current.hasChildNodes()) {
         // Initialize map centered on Puy-de-Dôme
         const map = L.map(mapRef.current).setView([45.7772, 3.287], 10);
+        mapInstanceRef.current = map;
 
         // Add tile layer
         L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -93,6 +95,14 @@ export function InterventionMapSection() {
     };
 
     loadMap();
+
+    // Cleanup: remove map instance on unmount
+    return () => {
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.remove();
+        mapInstanceRef.current = null;
+      }
+    };
   }, []);
 
   return (
